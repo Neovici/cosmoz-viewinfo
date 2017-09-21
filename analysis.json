@@ -541,7 +541,11 @@
       "demos": [
         {
           "url": "demo/index.html",
-          "description": ""
+          "description": "Demo"
+        },
+        {
+          "url": "demo/basic.html",
+          "description": "Basic Demo"
         }
       ],
       "metadata": {},
@@ -635,11 +639,11 @@
           "range": {
             "file": "cosmoz-viewinfo.html",
             "start": {
-              "line": 17,
+              "line": 18,
               "column": 2
             },
             "end": {
-              "line": 17,
+              "line": 18,
               "column": 15
             }
           }
