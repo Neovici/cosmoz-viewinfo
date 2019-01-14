@@ -113,15 +113,21 @@
 				}
 			};
 		}
-		/**
-		 * Get component listeners.
-		 *
-		 * @returns {object} listeners.
-		 */
-		static get listeners() {
-			return {
-				'iron-resize': '_onResize'
-			};
+
+		constructor(){
+			super();
+			this._boundOnResize = this._onResize.bind(this);
+		}
+
+		connectedCallback() {
+			super.connectedCallback();
+			this.addEventListener('iron-resize', this._boundOnResize);
+		}
+
+		disconnectedCallback() {
+			super.disconnectedCallback();
+			this.removeEventListener('iron-resize', this._boundOnResize);
+			this.cancelDebouncer('_throttleResize');
 		}
 		/**
 		 * Notify instances of effect changes.
