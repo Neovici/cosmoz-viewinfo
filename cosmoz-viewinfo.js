@@ -4,8 +4,8 @@
 
 	window.Cosmoz = window.Cosmoz || {};
 
-	const viewInfoInstances = [],
-		sharedViewInfo = {
+	const VIEW_INFO_INSTANCES = [],
+		SHARED_VIEW_INFO = {
 			desktop: false,
 			effects: 10,
 			height: 0,
@@ -47,9 +47,9 @@
 		 * @returns {void}
 		 */
 		attached() {
-			viewInfoInstances.push(this);
+			VIEW_INFO_INSTANCES.push(this);
 			// Needed to make template views trigger on load and not only on resize
-			this.viewInfo = sharedViewInfo;
+			this.viewInfo = SHARED_VIEW_INFO;
 		},
 		/**
 		 * Remove from view instances.
@@ -57,9 +57,9 @@
 		 * @returns {void}
 		 */
 		detached() {
-			const i = viewInfoInstances.indexOf(this);
+			const i = VIEW_INFO_INSTANCES.indexOf(this);
 			if (i >= 0) {
-				viewInfoInstances.splice(i, 1);
+				VIEW_INFO_INSTANCES.splice(i, 1);
 			}
 		}
 	};
@@ -127,7 +127,9 @@
 		disconnectedCallback() {
 			super.disconnectedCallback();
 			this.removeEventListener('iron-resize', this._boundOnResize);
-			this.cancelDebouncer('_throttleResize');
+			if (this._debouncer) {
+				this._debouncer.cancel();
+			}
 		}
 		/**
 		 * Notify instances of effect changes.
@@ -148,7 +150,7 @@
 		 * @returns {void}
 		 */
 		_notifyInstances(delta) {
-			viewInfoInstances.forEach(instance => {
+			VIEW_INFO_INSTANCES.forEach(instance => {
 				if (!instance) {
 					return;
 				}
@@ -162,43 +164,46 @@
 		 * @returns {void}
 		 */
 		_onResize() {
-			if (!Array.isArray(viewInfoInstances) || viewInfoInstances.length === 0) {
+			if (!Array.isArray(VIEW_INFO_INSTANCES) || VIEW_INFO_INSTANCES.length === 0) {
 				return;
 			}
+			Polymer.enqueueDebouncer(
+				this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+					Polymer.Async.timeOut.after(this.throttleTimeout),
+					() => {
+						const update = this._updateViewSize();
 
-			this.debounce('_throttleResize', () => {
-				const update = this._updateViewSize();
-
-				if (update === undefined) {
-					return;
-				}
-				viewInfoInstances.filter((el) => {
-				// Only dispatch event on visible elements, offsetParent should be null for hidden
-				// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent
-					return el.offsetParent !== null;
-				}).forEach(element => {
-					element.dispatchEvent(new CustomEvent(
-						'viewinfo-resize',
-						{
-							bubbles: true,
-							composed: true,
-							detail: {
-								bigger: update
-							}
+						if (update == null) {
+							return;
 						}
-					));
-				});
-			}, this.throttleTimeout);
+						VIEW_INFO_INSTANCES.filter((el) => {
+						// Only dispatch event on visible elements, offsetParent should be null for hidden
+						// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent
+							return el.offsetParent !== null;
+						}).forEach(element => {
+							element.dispatchEvent(new CustomEvent(
+								'viewinfo-resize',
+								{
+									bubbles: true,
+									composed: true,
+									detail: {
+										bigger: update
+									}
+								}
+							));
+						});
+					})
+			);
 		}
 		/**
-		 * Recalculates viewInfo and updated sharedViewInfo accordingly.
+		 * Recalculates viewInfo and updated SHARED_VIEW_INFO accordingly.
 		 *
-		 * @returns {boolean}  returns true if sharedViewInfo.width is lower the
+		 * @returns {boolean}  returns true if SHARED_VIEW_INFO.width is lower the
 		 * next width
 		 */
 		_updateViewSize() {
 			const
-				prevWidth = sharedViewInfo.width,
+				prevWidth = SHARED_VIEW_INFO.width,
 				next = {
 					height: this.clientHeight || this.offsetHeight || this.scrollHeight,
 					width: this.clientWidth || this.offsetWidth || this.scrollWidth
@@ -220,10 +225,10 @@
 
 			next.desktop = !next.mobile && !next.tablet;
 
-			const delta = this._getDelta(sharedViewInfo, next);
+			const delta = this._getDelta(SHARED_VIEW_INFO, next);
 
 			Object.keys(delta).forEach(key => {
-				sharedViewInfo[key] = delta[key];
+				SHARED_VIEW_INFO[key] = delta[key];
 			});
 
 			this._notifyInstances(delta);
