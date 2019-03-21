@@ -122,6 +122,7 @@
 		connectedCallback() {
 			super.connectedCallback();
 			this.addEventListener('iron-resize', this._boundOnResize);
+			this._onResize();
 		}
 
 		disconnectedCallback() {
