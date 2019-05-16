@@ -12,27 +12,31 @@
 		<span>Width: </span><span>{{ viewInfo.width }}</span><br/>
 	</template>
 	<script type="text/javascript">
-		'use strict';
-
-		Polymer({
-			behaviors: [
-				Cosmoz.ViewInfoBehavior
-			],
-			properties: {
-				label: {
-					type: String
-				}
-			},
-			is: 'x-viewinfo',
-			listeners: {
-				'viewinfo-resize': '_viewInfoResize'
-			},
-			attached: function () {
+		/*global Cosmoz,Polymer*/
+		class XViewinfo extends Polymer.mixinBehaviors([Cosmoz.ViewInfoBehavior], Polymer.Element) {
+			static get properties() {
+				return {
+					label: {
+						type: String
+					}
+				};
+			}
+			static get is() {
+				return 'x-viewinfo';
+			}
+			connectedCallback() {
+				super.connectedCallback();
 				console.log('x-viewinfo ' + this.label + ' attached');
-			},
-			_viewInfoResize: function () {
+				window.addEventListener('viewinfo-resize', this._viewInfoResize.bind(this));
+			}
+			disconnectedCallback() {
+				super.disconnectedCallback();
+				window.removeEventListener('viewinfo-resize', this._viewInfoResize.bind(this));
+			}
+			_viewInfoResize() {
 				console.log('x-viewinfo ' + this.label + ' resize!');
 			}
-		});
+		}
+		customElements.define(XViewinfo.is, XViewinfo);
 	</script>
 </dom-module>
