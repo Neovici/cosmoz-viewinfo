@@ -8,7 +8,13 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 
 import { VIEW_INFO_INSTANCES, SHARED_VIEW_INFO } from './cosmoz-viewinfo-mixin';
 
+import { createContext } from 'haunted';
+
 export { viewInfoAware } from './cosmoz-viewinfo-mixin';
+
+export const ViewInfo = createContext(SHARED_VIEW_INFO);
+
+customElements.define('view-info-provider', ViewInfo.Provider);
 
 /**
  * `<cosmoz-viewinfo>` is a component to create a view with information about
@@ -22,7 +28,7 @@ export { viewInfoAware } from './cosmoz-viewinfo-mixin';
  */
 export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
 	static get template() {
-		return html`<slot></slot>`;
+		return html`<view-info-provider value="[[ _currentViewInfo ]]"><slot></slot></view-info-provider>`;
 	}
 
 	/**
@@ -71,6 +77,10 @@ export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], Poly
 			throttleTimeout: {
 				type: Number,
 				value: 250
+			},
+			_currentViewInfo: {
+				type: Object,
+				value: SHARED_VIEW_INFO
 			}
 		};
 	}
@@ -167,7 +177,7 @@ export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], Poly
 	 * @returns {boolean}  returns true if SHARED_VIEW_INFO.width is lower the
 	 * next width
 	 */
-	_updateViewSize() {
+	_updateViewSize() { // eslint-disable-line max-statements
 		const
 			prevWidth = SHARED_VIEW_INFO.width,
 			next = {
@@ -196,6 +206,8 @@ export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], Poly
 		Object.keys(delta).forEach(key => {
 			SHARED_VIEW_INFO[key] = delta[key];
 		});
+
+		this._currentViewInfo = {...SHARED_VIEW_INFO};
 
 		this._notifyInstances(delta);
 
