@@ -62,10 +62,12 @@
 		"haunted": "^4.7.0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^9.1.0",
+		"@commitlint/cli": "^9.1.2",
 		"@commitlint/config-conventional": "^9.1.0",
 		"@neovici/eslint-config": "^1.1.7",
 		"@neovici/github-actions-eslint-annotator": "^0.4.0",
+		"@open-wc/testing": "^2.5.11",
+		"@open-wc/testing-karma": "^4.0.3",
 		"@polymer/app-layout": "^3.0.2",
 		"@polymer/iron-component-page": "^4.0.0",
 		"@polymer/iron-demo-helpers": "^3.0.0",
@@ -81,7 +83,7 @@
 		"husky": "^4.2.5",
 		"karma": "^5.0.1",
 		"karma-firefox-launcher": "^1.3.0",
-		"karma-sauce-launcher": "^2.0.2",
+		"karma-sauce-launcher": "^4.1.5",
 		"semantic-release": "^17.1.0",
 		"sinon": "^9.0.2",
 		"web-animations-js": "^2.3.1"
