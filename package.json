@@ -65,7 +65,6 @@
 		"@commitlint/cli": "^9.1.2",
 		"@commitlint/config-conventional": "^9.1.0",
 		"@neovici/eslint-config": "^1.1.7",
-		"@neovici/github-actions-eslint-annotator": "^0.4.0",
 		"@open-wc/testing": "^2.5.11",
 		"@open-wc/testing-karma": "^4.0.3",
 		"@polymer/app-layout": "^3.0.2",
