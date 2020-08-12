@@ -65,7 +65,7 @@ module.exports = config => {
 			sauceLabs: {
 				testName: 'cosmoz-viewinfo karma tests'
 			},
-			reporters: ['dots', 'saucelabs'],
+			reporters: ['dots', 'saucelabs']
 		})
 	);
 	return config;

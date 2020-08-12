@@ -16,10 +16,11 @@ import {
 	useContext
 } from 'haunted';
 
-export { viewInfoAware } from './cosmoz-viewinfo-mixin';
+const ViewInfo = createContext(SHARED_VIEW_INFO),
+	useViewInfo = () => useContext(ViewInfo);
 
-export const ViewInfo = createContext(SHARED_VIEW_INFO);
-export const useViewInfo = () => useContext(ViewInfo);
+
+export { viewInfoAware } from './cosmoz-viewinfo-mixin';
 
 customElements.define('view-info-provider', ViewInfo.Provider);
 
@@ -33,7 +34,7 @@ customElements.define('view-info-provider', ViewInfo.Provider);
  * @demo demo/basic.html Basic Demo
  * @customElement
  */
-export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
+class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
 	static get template() {
 		return html`
 			<style>view-info-provider{ all: inherit; } </style>
@@ -243,3 +244,9 @@ export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], Poly
 }
 
 customElements.define(CosmozViewInfo.is, CosmozViewInfo);
+
+export {
+	CosmozViewInfo,
+	ViewInfo,
+	useViewInfo
+};
