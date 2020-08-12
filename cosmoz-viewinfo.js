@@ -6,13 +6,20 @@ import { timeOut } from '@polymer/polymer/lib/utils/async';
 import { html } from '@polymer/polymer/lib/utils/html-tag';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 
-import { VIEW_INFO_INSTANCES, SHARED_VIEW_INFO } from './cosmoz-viewinfo-mixin';
+import {
+	VIEW_INFO_INSTANCES,
+	SHARED_VIEW_INFO
+} from './cosmoz-viewinfo-mixin';
 
-import { createContext } from 'haunted';
+import {
+	createContext,
+	useContext
+} from 'haunted';
 
 export { viewInfoAware } from './cosmoz-viewinfo-mixin';
 
 export const ViewInfo = createContext(SHARED_VIEW_INFO);
+export const useViewInfo = () => useContext(ViewInfo);
 
 customElements.define('view-info-provider', ViewInfo.Provider);
 
@@ -28,7 +35,10 @@ customElements.define('view-info-provider', ViewInfo.Provider);
  */
 export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
 	static get template() {
-		return html`<view-info-provider value="[[ _currentViewInfo ]]"><slot></slot></view-info-provider>`;
+		return html`
+			<style>view-info-provider{ all: inherit; } </style>
+			<view-info-provider value="[[ _currentViewInfo ]]"><slot></slot></view-info-provider>
+		`;
 	}
 
 	/**
@@ -207,7 +217,7 @@ export class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], Poly
 			SHARED_VIEW_INFO[key] = delta[key];
 		});
 
-		this._currentViewInfo = {...SHARED_VIEW_INFO};
+		this._currentViewInfo = { ...SHARED_VIEW_INFO };
 
 		this._notifyInstances(delta);
 
