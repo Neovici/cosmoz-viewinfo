@@ -32,7 +32,7 @@ module.exports = config => {
 
 	config.set(
 		merge(createDefaultConfig(config), {
-			coverageReporter: {
+			coverageIstanbulReporter: {
 				thresholds: {
 					global: {
 						statements: 57,
@@ -65,7 +65,8 @@ module.exports = config => {
 			sauceLabs: {
 				testName: 'cosmoz-viewinfo karma tests'
 			},
-			reporters: ['dots', 'saucelabs']
+			reporters: ['dots', 'saucelabs'],
+			singleRun: true
 		})
 	);
 	return config;
