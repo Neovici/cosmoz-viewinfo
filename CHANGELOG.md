@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.1...v3.1.2) (2020-08-14)
+
+
+### Bug Fixes
+
+* 100% view-info-provider sizing ([48f0b7f](https://github.com/neovici/cosmoz-viewinfo/commit/48f0b7f0c2c78b24f465108fbc507a6d879fbd0c))
+
 ## [3.1.1](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.0...v3.1.1) (2020-08-12)
 
 
