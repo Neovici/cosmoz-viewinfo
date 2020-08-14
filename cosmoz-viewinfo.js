@@ -37,7 +37,13 @@ customElements.define('view-info-provider', ViewInfo.Provider);
 class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
 	static get template() {
 		return html`
-			<style>view-info-provider{ all: inherit; } </style>
+			<style>
+				view-info-provider {
+					all: inherit;
+					width: 100%;
+					height: 100%;
+				}
+			</style>
 			<view-info-provider value="[[ _currentViewInfo ]]"><slot></slot></view-info-provider>
 		`;
 	}
