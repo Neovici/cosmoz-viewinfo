@@ -1,3 +1,10 @@
+## [3.1.3](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.2...v3.1.3) (2020-10-05)
+
+
+### Bug Fixes
+
+* replace iron-resizable-behavior with ResizeObserver ([ce71306](https://github.com/neovici/cosmoz-viewinfo/commit/ce713068f49c46357376b13f84429adaad0136ea))
+
 ## [3.1.2](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.1...v3.1.2) (2020-08-14)
 
 
