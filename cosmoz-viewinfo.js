@@ -1,10 +1,7 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element';
-import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior';
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce';
-import { enqueueDebouncer } from '@polymer/polymer/lib/utils/flush';
 import { timeOut } from '@polymer/polymer/lib/utils/async';
 import { html } from '@polymer/polymer/lib/utils/html-tag';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 
 import {
 	VIEW_INFO_INSTANCES,
@@ -34,7 +31,7 @@ customElements.define('view-info-provider', ViewInfo.Provider);
  * @demo demo/basic.html Basic Demo
  * @customElement
  */
-class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
+class CosmozViewInfo extends PolymerElement {
 	static get template() {
 		return html`
 			<style>
@@ -104,21 +101,19 @@ class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElem
 
 	constructor() {
 		super();
-		this._boundOnResize = this._onResize.bind(this);
+		this._resizeObserver = new ResizeObserver(this._onResize.bind(this));
 	}
 
 	connectedCallback() {
 		super.connectedCallback();
-		this.addEventListener('iron-resize', this._boundOnResize);
+		this._resizeObserver.observe(this);
 		this._updateViewSize();
 	}
 
 	disconnectedCallback() {
 		super.disconnectedCallback();
-		this.removeEventListener('iron-resize', this._boundOnResize);
-		if (this._debouncer) {
-			this._debouncer.cancel();
-		}
+		this._resizeObserver.unobserve(this);
+		this._debouncer?.cancel();
 	}
 
 	/**
@@ -152,40 +147,41 @@ class CosmozViewInfo extends mixinBehaviors([IronResizableBehavior], PolymerElem
 	}
 
 	/**
-	 * Called on `iron-resize`, throttles `viewinfo-resize` events.
+	 * Called on resize, throttles `viewinfo-resize` events.
 	 * @returns {void}
 	 */
-	_onResize() {
+	_onResize([entry]) {
+		if (entry.borderBoxSize?.[0]?.inlineSize === 0 || entry.contentRect?.width === 0) {
+			return;
+		}
 		if (!Array.isArray(VIEW_INFO_INSTANCES) || VIEW_INFO_INSTANCES.length === 0) {
 			return;
 		}
-		enqueueDebouncer(
-			this._debouncer = Debouncer.debounce(this._debouncer,
-				timeOut.after(this.throttleTimeout),
-				() => {
-					const update = this._updateViewSize();
+		this._debouncer = Debouncer.debounce(this._debouncer,
+			timeOut.after(this.throttleTimeout),
+			() => {
+				const update = this._updateViewSize();
 
-					if (update == null) {
-						return;
-					}
-					VIEW_INFO_INSTANCES.filter(el => {
+				if (update == null) {
+					return;
+				}
+				VIEW_INFO_INSTANCES.filter(el => {
 					// Only dispatch event on visible elements, offsetParent should be null for hidden
 					// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent
-						return el.offsetParent !== null;
-					}).forEach(element => {
-						element.dispatchEvent(new CustomEvent(
-							'viewinfo-resize',
-							{
-								bubbles: true,
-								composed: true,
-								detail: {
-									bigger: update
-								}
+					return el.offsetParent !== null;
+				}).forEach(element => {
+					element.dispatchEvent(new CustomEvent(
+						'viewinfo-resize',
+						{
+							bubbles: true,
+							composed: true,
+							detail: {
+								bigger: update
 							}
-						));
-					});
-				})
-		);
+						}
+					));
+				});
+			});
 	}
 
 	/**
