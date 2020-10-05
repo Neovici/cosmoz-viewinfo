@@ -35,6 +35,7 @@ class CosmozViewInfo extends PolymerElement {
 	static get template() {
 		return html`
 			<style>
+				:host { display: block; }
 				view-info-provider {
 					all: inherit;
 					width: 100%;
