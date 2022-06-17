@@ -58,7 +58,7 @@
 	},
 	"dependencies": {
 		"@polymer/polymer": "^3.2.0",
-		"haunted": "^4.7.0"
+		"haunted": "^4.7.0 || ^5"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
