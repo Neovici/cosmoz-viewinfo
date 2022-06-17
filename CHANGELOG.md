@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.3...v3.2.0) (2022-06-17)
+
+
+### Features
+
+* **deps:** allow haunted v5 ([94e9977](https://github.com/neovici/cosmoz-viewinfo/commit/94e9977dfb7dfd45277d30af450076a3a956d186))
+
 ## [3.1.3](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.2...v3.1.3) (2020-10-05)
 
 
