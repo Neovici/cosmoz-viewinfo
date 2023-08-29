@@ -25,7 +25,6 @@
 	],
 	"scripts": {
 		"lint": "eslint --cache .",
-		"build": "tsc -p tsconfig.build.json",
 		"start": "wds",
 		"test": "wtr --coverage",
 		"test:watch": "wtr --watch"
