@@ -24,13 +24,11 @@
 		"cosmoz-*.js"
 	],
 	"scripts": {
-		"lint": "eslint --cache --ext .js .",
-		"start": "es-dev-server",
-		"test": "karma start --coverage",
-		"test:watch": "karma start --auto-watch=true --single-run=false",
-		"test:update-snapshots": "karma start --update-snapshots",
-		"test:prune-snapshots": "karma start --prune-snapshots",
-		"test:compatibility": "karma start --compatibility all --auto-watch=true --single-run=false"
+		"lint": "tsc && eslint --cache .",
+		"build": "tsc -p tsconfig.build.json",
+		"start": "wds",
+		"test": "wtr --coverage",
+		"test:watch": "wtr --watch"
 	},
 	"release": {
 		"plugins": [
@@ -61,29 +59,22 @@
 		"haunted": "^4.7.0 || ^5"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^11.0.0",
-		"@commitlint/config-conventional": "^11.0.0",
-		"@neovici/eslint-config": "^1.3.0",
-		"@open-wc/testing": "^2.5.0",
-		"@open-wc/testing-karma": "^4.0.9",
+		"@commitlint/cli": "^17.0.0",
+		"@commitlint/config-conventional": "^17.0.0",
+		"@neovici/cfg": "^1.38.3",
+		"@open-wc/testing": "^3.0.0",
 		"@polymer/app-layout": "^3.0.2",
 		"@polymer/iron-component-page": "^4.0.0",
 		"@polymer/iron-demo-helpers": "^3.0.0",
 		"@polymer/iron-test-helpers": "^3.0.0",
 		"@polymer/neon-animation": "^3.0.0",
 		"@polymer/test-fixture": "^4.0.2",
-		"@semantic-release/changelog": "^5.0.0",
-		"@semantic-release/git": "^9.0.0",
-		"@webcomponents/webcomponentsjs": "^2.0.0",
-		"deepmerge": "^4.2.2",
-		"es-dev-server": "^1.57.0",
-		"eslint": "^7.10.0",
+		"@semantic-release/changelog": "^6.0.0",
+		"@semantic-release/git": "^10.0.0",
+		"@webcomponents/webcomponentsjs": "^2.8.0",
 		"husky": "^4.3.0",
-		"karma": "^6.4.1",
-		"karma-firefox-launcher": "^1.3.0",
-		"karma-sauce-launcher": "^4.1.5",
-		"semantic-release": "^17.1.0",
-		"sinon": "^9.1.0",
+		"semantic-release": "^21.0.0",
+		"sinon": "^15.0.0",
 		"web-animations-js": "^2.3.1"
 	}
 }
