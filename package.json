@@ -24,7 +24,7 @@
 		"cosmoz-*.js"
 	],
 	"scripts": {
-		"lint": "tsc && eslint --cache .",
+		"lint": "eslint --cache .",
 		"build": "tsc -p tsconfig.build.json",
 		"start": "wds",
 		"test": "wtr --coverage",
