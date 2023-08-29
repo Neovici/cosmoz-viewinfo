@@ -41,6 +41,7 @@ class XViewInfo extends viewInfoAware(PolymerElement) {
 	}
 
 	_viewInfoResize() {
+		// eslint-disable-next-line no-console
 		console.log('x-viewinfo ' + this.label + ' resize!');
 	}
 }
