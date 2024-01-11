@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/neovici/cosmoz-viewinfo/compare/v3.2.0...v4.0.0) (2024-01-11)
+
+
+### Features
+
+* update to pion ([08c4d0a](https://github.com/neovici/cosmoz-viewinfo/commit/08c4d0a0e758b8c3099e0da9b9bf7f1a34a520ea))
+
+
+### BREAKING CHANGES
+
+* Update to @pionjs/pion
+
 # [3.2.0](https://github.com/neovici/cosmoz-viewinfo/compare/v3.1.3...v3.2.0) (2022-06-17)
 
 
