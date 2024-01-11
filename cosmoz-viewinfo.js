@@ -11,7 +11,7 @@ import {
 import {
 	createContext,
 	useContext
-} from 'haunted';
+} from '@pionjs/pion';
 
 const ViewInfo = createContext(SHARED_VIEW_INFO),
 	useViewInfo = () => useContext(ViewInfo);
