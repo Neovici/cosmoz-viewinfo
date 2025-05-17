@@ -1,79 +1,69 @@
 {
-	"name": "@neovici/cosmoz-viewinfo",
-	"version": "4.0.0",
-	"description": "A component to create a view with information about available size and throttled resize events",
-	"keywords": [
-		"polymer",
-		"web-components"
-	],
-	"homepage": "https://github.com/neovici/cosmoz-viewinfo#readme",
-	"bugs": {
-		"url": "https://github.com/neovici/cosmoz-viewinfo/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/neovici/cosmoz-viewinfo.git"
-	},
-	"license": "Apache-2.0",
-	"author": "",
-	"main": "cosmoz-viewinfo.js",
-	"directories": {
-		"test": "test"
-	},
-	"files": [
-		"cosmoz-*.js"
-	],
-	"scripts": {
-		"lint": "eslint --cache .",
-		"start": "wds",
-		"test": "wtr --coverage",
-		"test:watch": "wtr --watch"
-	},
-	"release": {
-		"plugins": [
-			"@semantic-release/commit-analyzer",
-			"@semantic-release/release-notes-generator",
-			"@semantic-release/changelog",
-			"@semantic-release/github",
-			"@semantic-release/npm",
-			"@semantic-release/git"
-		],
-		"branch": "master"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"commitlint": {
-		"extends": [
-			"@commitlint/config-conventional"
-		]
-	},
-	"husky": {
-		"hooks": {
-			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-		}
-	},
-	"dependencies": {
-		"@pionjs/pion": "^2.0.0",
-		"@polymer/polymer": "~3.4.0"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^18.0.0",
-		"@commitlint/config-conventional": "^18.0.0",
-		"@neovici/cfg": "^1.38.3",
-		"@open-wc/testing": "^4.0.0",
-		"@polymer/app-layout": "^3.0.2",
-		"@polymer/iron-component-page": "^4.0.0",
-		"@polymer/iron-demo-helpers": "^3.0.0",
-		"@polymer/iron-test-helpers": "^3.0.0",
-		"@polymer/neon-animation": "^3.0.0",
-		"@polymer/test-fixture": "^4.0.2",
-		"@semantic-release/changelog": "^6.0.0",
-		"@semantic-release/git": "^10.0.0",
-		"@webcomponents/webcomponentsjs": "^2.8.0",
-		"husky": "^4.3.0",
-		"semantic-release": "^22.0.0",
-		"sinon": "^17.0.0",
-		"web-animations-js": "^2.3.1"
-	}
+  "name": "@neovici/cosmoz-viewinfo",
+  "version": "4.0.0",
+  "description": "A component to create a view with information about available size and throttled resize events",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "homepage": "https://github.com/neovici/cosmoz-viewinfo#readme",
+  "bugs": {
+    "url": "https://github.com/neovici/cosmoz-viewinfo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neovici/cosmoz-viewinfo.git"
+  },
+  "license": "Apache-2.0",
+  "author": "",
+  "main": "cosmoz-viewinfo.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "cosmoz-*.js"
+  ],
+  "scripts": {
+    "lint": "eslint --cache .",
+    "start": "wds",
+    "test": "wtr --coverage",
+    "test:watch": "wtr --watch"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ],
+    "branch": "master"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@pionjs/pion": "^2.0.0",
+    "@polymer/polymer": "~3.4.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "@neovici/cfg": "^1.38.3",
+    "@open-wc/testing": "^4.0.0",
+    "@polymer/app-layout": "^3.0.2",
+    "@polymer/iron-component-page": "^4.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0",
+    "@polymer/iron-test-helpers": "^3.0.0",
+    "@polymer/neon-animation": "^3.0.0",
+    "@polymer/test-fixture": "^4.0.2",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@webcomponents/webcomponentsjs": "^2.8.0",
+    "husky": "^4.3.0",
+    "semantic-release": "^22.0.0",
+    "sinon": "^17.0.0",
+    "web-animations-js": "^2.3.1"
+  }
 }
