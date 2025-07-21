@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/neovici/cosmoz-viewinfo/compare/v4.0.0...v4.1.0) (2025-07-21)
+
+
+### Features
+
+* new automerge workflow ([a312585](https://github.com/neovici/cosmoz-viewinfo/commit/a31258591e8678b1fb7f6200dd10f11218a466f0))
+
 # [4.0.0](https://github.com/neovici/cosmoz-viewinfo/compare/v3.2.0...v4.0.0) (2024-01-11)
 
 
