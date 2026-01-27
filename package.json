@@ -6,13 +6,13 @@
     "polymer",
     "web-components"
   ],
-  "homepage": "https://github.com/neovici/cosmoz-viewinfo#readme",
+  "homepage": "https://github.com/Neovici/cosmoz-viewinfo#readme",
   "bugs": {
-    "url": "https://github.com/neovici/cosmoz-viewinfo/issues"
+    "url": "https://github.com/Neovici/cosmoz-viewinfo/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/neovici/cosmoz-viewinfo.git"
+    "url": "git+https://github.com/Neovici/cosmoz-viewinfo.git"
   },
   "license": "Apache-2.0",
   "author": "",
