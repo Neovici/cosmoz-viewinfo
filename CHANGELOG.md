@@ -1,3 +1,10 @@
+## [4.1.2](https://github.com/Neovici/cosmoz-viewinfo/compare/v4.1.1...v4.1.2) (2026-01-28)
+
+
+### Bug Fixes
+
+* repository URL case sensitivity ([2588d57](https://github.com/Neovici/cosmoz-viewinfo/commit/2588d57796e478da256208111f5a5d0d413b52b8))
+
 ## [4.1.1](https://github.com/neovici/cosmoz-viewinfo/compare/v4.1.0...v4.1.1) (2025-08-04)
 
 
